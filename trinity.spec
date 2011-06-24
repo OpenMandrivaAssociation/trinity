@@ -42,7 +42,7 @@ The intelligence features include:
   range.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{git}
 %patch0 -p1
 
 %build
