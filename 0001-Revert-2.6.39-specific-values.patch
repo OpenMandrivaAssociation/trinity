@@ -1,0 +1,66 @@
+From 8f1cf493aafc0941e15a97f6d13527fdf3ec1bf5 Mon Sep 17 00:00:00 2001
+From: Alexandre Lissy <alissy@mandriva.com>
+Date: Fri, 24 Jun 2011 14:53:45 +0200
+Subject: [PATCH] Revert 2.6.39 specific values
+
+---
+ syscalls/linkat.c            |    2 +-
+ syscalls/open.c              |    2 +-
+ syscalls/open_by_handle_at.c |    2 +-
+ syscalls/openat.c            |    2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/syscalls/linkat.c b/syscalls/linkat.c
+index 273a12d..5cbd9c4 100644
+--- a/syscalls/linkat.c
++++ b/syscalls/linkat.c
+@@ -22,6 +22,6 @@ struct syscall syscall_linkat = {
+ 	.arg5type = ARG_LIST,
+ 	.arg5list = {
+ 		.num = 2,
+-		.values = { AT_SYMLINK_FOLLOW , AT_EMPTY_PATH },
++		.values = { AT_SYMLINK_FOLLOW },
+ 	},
+ };
+diff --git a/syscalls/open.c b/syscalls/open.c
+index 529861c..50c6fdd 100644
+--- a/syscalls/open.c
++++ b/syscalls/open.c
+@@ -23,7 +23,7 @@ struct syscall syscall_open = {
+ 				O_TRUNC, O_APPEND, O_NONBLOCK,
+ 				O_SYNC, O_ASYNC,
+ 				O_DIRECTORY, O_NOFOLLOW, O_CLOEXEC,
+-				O_DIRECT, O_NOATIME, O_PATH,
++				O_DIRECT, O_NOATIME,
+ 				O_DSYNC, O_LARGEFILE },
+ 	},
+ 	.arg3name = "mode",
+diff --git a/syscalls/open_by_handle_at.c b/syscalls/open_by_handle_at.c
+index 637ac3d..ccd04b2 100644
+--- a/syscalls/open_by_handle_at.c
++++ b/syscalls/open_by_handle_at.c
+@@ -25,7 +25,7 @@ struct syscall syscall_open_by_handle_at = {
+ 				O_TRUNC, O_APPEND, O_NONBLOCK,
+ 				O_SYNC, O_ASYNC,
+ 				O_DIRECTORY, O_NOFOLLOW, O_CLOEXEC,
+-				O_DIRECT, O_NOATIME, O_PATH,
++				O_DIRECT, O_NOATIME,
+ 				O_DSYNC, O_LARGEFILE },
+ 	},
+ };
+diff --git a/syscalls/openat.c b/syscalls/openat.c
+index 06daab7..11fd29a 100644
+--- a/syscalls/openat.c
++++ b/syscalls/openat.c
+@@ -23,7 +23,7 @@ struct syscall syscall_openat = {
+ 				O_TRUNC, O_APPEND, O_NONBLOCK,
+ 				O_SYNC, O_ASYNC,
+ 				O_DIRECTORY, O_NOFOLLOW, O_CLOEXEC,
+-				O_DIRECT, O_NOATIME, O_PATH,
++				O_DIRECT, O_NOATIME,
+ 				O_DSYNC, O_LARGEFILE },
+ 	},
+ 	.arg4name = "mode",
+-- 
+1.7.5.4
+
